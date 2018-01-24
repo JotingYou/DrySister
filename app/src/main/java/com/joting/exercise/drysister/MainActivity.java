@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private PictureLoader loader;
     private SisterApi sisterApi;
     private SisterTask sisterTask;
+    private SisterLoader mLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         sisterApi = new SisterApi();
         loader = new PictureLoader();
+        mLoader = SisterLoader.getInstance(MainActivity.this);
         initData();
         initUI();
     }
@@ -49,10 +51,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.button_show:
                 if (datas != null && !datas.isEmpty()){
-                    if (curPos > 9){
+                    if (curPos > datas.size()-1){
                         curPos = 0;
                     }
-                    loader.load(showImage,datas.get(curPos).url);
+                    //loader.load(showImage,datas.get(curPos).url);
+                    mLoader.bindBitmap(datas.get(curPos).url,showImage,400,400);
                     curPos++;
                 }
 
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sisterTask = new SisterTask();
                 sisterTask.execute();
                 curPos = 0;
+                //mLoader.bindBitmap(datas.get(curPos).url,showImage,400,400);
                 break;
         }
     }
