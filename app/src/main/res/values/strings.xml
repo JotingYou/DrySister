@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DrySister</string>
+    <string name="show">Show</string>
+    <string name="next">Next</string>
+    <string name="refresh">Refresh</string>
+    <string name="buttonDscrb">Button_show</string>
+    <string name="ImageDscrb">Image_show</string>
+</resources>
